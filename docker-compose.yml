@@ -13,7 +13,7 @@ services:
     restart: always
 
   webapp:
-    build: ./webapp/go
+    build: ./webapp/node
     environment:
       ISUCON_DB_HOST: mysql
       ISUCON_DB_PORT: 3306
@@ -34,7 +34,7 @@ services:
     restart: always
 
   mysql:
-    image: mysql/mysql-server:8.0.31
+    image: mysql/mysql-server:latest
     environment:
       - "MYSQL_ROOT_HOST=%"
       - "MYSQL_ROOT_PASSWORD=root"
