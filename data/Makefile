@@ -3,15 +3,15 @@ builder: go.* *.go ../webapp/go/* cmd/builder/*
 
 build: builder
 	./builder 100
-	mysqldump -uisucon -pisucon --host 127.0.0.1 -B isuports --no-tablespaces > 90_data.sql
+	mysqldump -uisucon -pisucon --host mysql -B isuports --no-tablespaces > 90_data.sql
 
 build-for-docker-compose: builder
 	./builder \
 		-out-dir=../initial_data \
-		-db-dsn='isucon:isucon@tcp(127.0.0.1:13306)/isuports?interpolateParams=true' \
+		-db-dsn='isucon:isucon@tcp(mysql:3306)/isuports?interpolateParams=true' \
 		100
 	mysqldump -uisucon -pisucon \
-		--host 127.0.0.1 --port 13306 \
+		--host mysql --port 3306 \
 		-B isuports --no-tablespaces > ../initial_data/90_data.sql
 	cp *.json ../bench/
 

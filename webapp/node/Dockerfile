@@ -8,7 +8,9 @@ RUN apt-get update && \
   wget -q https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb && \
   apt-get -y install ./mysql-apt-config_*_all.deb && \
   apt-get -y update && \
-  apt-get -y install default-mysql-client htop
+  apt-get -y install default-mysql-client htop dnsutils
+  # 監視用 htop 
+  # dnsutils nslookupやらネットワーク系コマンド
 
 RUN useradd --uid=1001 --create-home isucon
 USER isucon
